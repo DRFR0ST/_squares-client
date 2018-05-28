@@ -1,0 +1,20 @@
+.App {
+  max-width: 50%;
+  margin: auto;
+}
+
+.message {
+  background: #FAFAFA;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 60%;
+  position: relative;
+}
+
+.message.you {
+  background: #FAFAFA;
+}
+
+.message.guest {
+  background: #F5F5F5;
+}
