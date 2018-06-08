@@ -4,10 +4,20 @@
     height: 64px;
     position: fixed;
     bottom: 0;
+    left:0;
+    background-color: #fff;
+    box-shadow: 0 -3px 6px rgba(0,0,0,0.16), 0 -3px 6px rgba(0,0,0,0.23);
+    padding-left: 2.5%;
+    padding-right: 2.5%;
 }
 
-.sandbox input {
-    width: 80vw;
+.sendbox input[type=text] {
+    width: 85%;
+}
+
+.sendbox button {
+    width: 10%;
+    margin-left: 10px;
 }
 
 .message {
@@ -24,4 +34,13 @@ background: #FAFAFA;
 
 .message.guest {
 background: #F5F5F5;
+}
+
+.badge {
+    padding: 15px;
+    background-color: #f3f3f3;
+}
+
+.badge .error {
+    background-color: #c98181;
 }

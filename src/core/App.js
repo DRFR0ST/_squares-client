@@ -98,7 +98,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.logged ? <div>
-          {this.state.connected ? <p>Connected!</p> : this.state.error !== null ? <p>{this.state.error}</p> :<p>Connecting...</p>}
+          {this.state.connected ? <p className="badge success">Connected!</p> : this.state.error !== null ? <p className="badge error">{this.state.error}</p> :<p className="badge">Connecting...</p>}
           {this.state.messages.length > 0 ? this.displayMessages() : ""}
           <SendBox events={this.events} sendMessage={this.sendMessage.bind(this)} />
         </div> 

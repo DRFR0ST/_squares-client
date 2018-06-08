@@ -17,7 +17,7 @@ class SendBox extends React.Component {
 
     render() {
         return  <div className="sendbox">
-                    <input value={this.state.input} onKeyPress={this.handleKeyPress} onChange={(e) => this.setState({input: e.target.value})} />
+                    <input type="text" value={this.state.input} onKeyPress={this.handleKeyPress} onChange={(e) => this.setState({input: e.target.value})} />
                     <button onClick={() => {this.props.sendMessage(this.state.input); this.setState({input: ""});}}>Send</button>
                 </div>;
     }
