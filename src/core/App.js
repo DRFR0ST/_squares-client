@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import Events from '../events/chat.js';
 
 import Login from '../components/Login/index';
@@ -9,6 +8,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      host: null,
       connected: false,
       error: null,
       logged: false,
@@ -17,18 +17,21 @@ class App extends Component {
       messages: []
     }
 
-    this.events = new Events();
+    this.events = null;
   }
 
-  componentDidMount() {
-    this.events.onOpen = () => {this.setState({connected: true}); this.addMessage(JSON.stringify(this.state.motd)); console.info("Successfuly connected to server.");}
-    this.events.onError = (error) => this.setState({error: "An error occured while connecting to server!"});
-    this.events.onMessage = (message) => this.addMessage(message.data);
+  componentDidUpdate() {
+    if(this.state.logged && !this.state.connected && this.state.host !== null) {
+       this.events = new Events(this.state.host);
+       this.events.onOpen = () => {this.setState({connected: true}); this.addMessage(JSON.stringify(this.state.motd)); console.info("Successfuly connected to server.");}
+       this.events.onError = (error) => this.setState({error: "An error occured while connecting to server!"});
+       this.events.onMessage = (message) => this.addMessage(message.data);
+    }
   }
 
   // User login method
-  login(user) {
-    this.setState({user: {...user}, logged: true});
+  login(data) {
+    this.setState({user: {username: data.username, color: data.color}, logged: true, host: data.host});
   }
 
   // Method sending messages to the server
@@ -63,7 +66,7 @@ class App extends Component {
     if(msg[msg.length-1] == "\"") msg = msg.toString().slice(0, -1);
   
     if(JSON.parse(msg) instanceof Object) {
-      this.setState({messages: [...this.state.messages, JSON.parse(msg)]});
+      this.setState({messages: [JSON.parse(msg), ...this.state.messages]});
     } else {
       console.log("Could not add message!");
     }

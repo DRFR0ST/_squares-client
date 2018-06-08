@@ -2,8 +2,8 @@
 window.WebSocket = window.WebSocket || window.MozWebSocket;
 
 class Events {
-    constructor() {
-        this.connection = new WebSocket('ws://127.0.0.1:1337');
+    constructor(host) {
+        this.connection = new WebSocket('ws://'+host);
 
         this.initialize();
     }
