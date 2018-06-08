@@ -37,10 +37,17 @@ background: #F5F5F5;
 }
 
 .badge {
+    display: inline-block;
     padding: 15px;
     background-color: #f3f3f3;
+    opacity: 0.8;
+    border-radius: 7px;
 }
 
-.badge .error {
-    background-color: #c98181;
+.badge.error {
+    background-color: #ceb2b2;
+}
+
+.badge.success {
+    background-color: rgb(193, 218, 202);
 }
